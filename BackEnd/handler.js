@@ -1,5 +1,7 @@
 var fs = require('fs');
 var path = require('path');
+var querystring = require('querystring');
+var countriesObject = require("./countries");
 
 function homeHandler(request, response) {
   var filePath = path.join(__dirname, '..', 'FrontEnd', 'index.html');
@@ -43,6 +45,14 @@ function autocompleteHandler(request, response){
     response.end();
   });
 
+}
+
+function filterCountries(searchParameter, dataObject ){
+  var regex = new Regex('/^' + searchParameter + '/i');
+
+  return Object.values(dataObject).filter(function(value){
+    return value.matches(regex);
+  });
 
 }
 
