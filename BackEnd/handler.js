@@ -22,11 +22,11 @@ function staticFileHandler(request, response, url) {
 
   var extension = url.split('.')[1];
 
-  var filePath = path.join(__dirname, '..', 'FrontEnd', url);
+  var filePath = path.join(__dirname, '..', url);
 
   fs.readFile(filePath, function(err, file) {
     if(err) console.log(err);
-    reponse.writeHead(200, 'Content-Type: ' + extensionType[extension]);
+    response.writeHead(200, 'Content-Type: ' + extensionType[extension]);
     response.end(file);
   });
 }
