@@ -32,6 +32,17 @@ function staticFileHandler(request, response, url) {
 }
 
 function autocompleteHandler(request, response){
+  var allTheData='';
+  response.writeHead(302,{'Location': '/'});
+  request.on('data',function(chunkOfData){
+    allTheData += chunkOfData;
+  });
+  request.on('end',function(){
+    var convertedData = querystring.parse(allTheData);
+    console.log(convertedData);
+    response.end();
+  });
+
 
 }
 
