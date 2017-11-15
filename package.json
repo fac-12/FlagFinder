@@ -1,0 +1,24 @@
+{
+  "name": "flagfinder",
+  "version": "1.0.0",
+  "description": "Find flags around the world, by inputting the country name",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape ./BackEnd/test.js",
+    "start": "nodemon ./BackEnd/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac-12/FlagFinder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac-12/FlagFinder/issues"
+  },
+  "homepage": "https://github.com/fac-12/FlagFinder#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.1",
+    "tape": "^4.8.0"
+  }
+}
