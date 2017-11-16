@@ -2,6 +2,7 @@ const searchForm = document.getElementById('searchForm');
 const datalist = document.getElementById('countries');
 const errorMessage = document.getElementById('error-message');
 const image = document.getElementById('flag');
+const body = document.getElementsByTagName('body')[0];
 
 let searchValue;
 
@@ -80,6 +81,7 @@ searchForm.addEventListener('submit', function(event) {
 function flagRenderer(countryObj) {
   errorMessage.innerText = '';
   image.src = countryObj.flag;
+  body.style.backgroundImage = "url('" + countryObj.flag + "')";
 }
 
 function removeOptions() {
