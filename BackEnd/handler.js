@@ -1,5 +1,7 @@
 var fs = require('fs');
 var path = require('path');
+var querystring = require('querystring');
+var countriesObject = require("./countries");
 
 function homeHandler(request, response) {
   var filePath = path.join(__dirname, '..', 'FrontEnd', 'index.html');
@@ -32,11 +34,35 @@ function staticFileHandler(request, response, url) {
 }
 
 function autocompleteHandler(request, response){
+  var allTheData='';
+  response.writeHead(302,{'Location': '/'});
+  request.on('data',function(chunkOfData){
+    allTheData += chunkOfData;
+  });
+  request.on('end',function(){
+    var convertedData = querystring.parse(allTheData);
+    console.log(convertedData);
+    response.end(filterCountries(convertedData, countriesObject));
+  });
 
 }
+
+function filterCountries(searchParameter, dataObject ){
+  var regex = new RegExp('^' + searchParameter, 'i');
+  var newObject = JSON.parse(JSON.stringify(dataObject));
+
+  newObject.countries = newObject.countries.filter(function(country){
+    return regex.test(country);
+  });
+  if(newObject.countries.length < 5)
+    return newObject.countries;
+  else
+    return newObject.countries = newObject.countries.slice(0,5);
+  }
 
 module.exports = {
   homeHandler,
   staticFileHandler,
-  autocompleteHandler
+  autocompleteHandler,
+  filterCountries
 }
