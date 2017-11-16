@@ -6,16 +6,19 @@ test('Tape is up and running', function(t) {
   t.end();
 })
 
-test('Check that it return an array', function(t){
+test('Check that it returns an array', function(t){
   var actual = Array.isArray(handlerFile.filterCountries('al', testObj));
   var expected = true;
   t.equal(actual, expected, 'should return an array');
   t.end();
 })
 
-// test('Check that the returned array contains a maximum of 5 items', function(t){
-//
-// })
+test('Check that the returned array contains a maximum of 5 items', function(t){
+  var actual = handlerFile.filterCountries('b',testObj).length === 5;
+  var expected = true;
+  t.equal(actual, expected, 'should return an array of 5 items');
+  t.end();
+})
 
 const testObj =
   {
