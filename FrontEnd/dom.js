@@ -18,8 +18,9 @@ searchForm.addEventListener('input', function(event) {
 
   xhr.onreadystatechange = function(){
     if(xhr.readyState == 4){
-
+      console.log('client side', xhr.responseText);
       obj = JSON.parse(xhr.responseText);
+
       autocomplete(obj);
     }
   };
@@ -43,12 +44,16 @@ searchForm.addEventListener('submit', function(event) {
 
   var xhr = new XMLHttpRequest();
   var url = 'https://restcountries.eu/rest/v2/name/' + searchValue + '?fullText=true';
+
+
   var responseObj;
 
   xhr.onreadystatechange = function() {
     if(xhr.readyState == 4) {
       responseObj = JSON.parse(xhr.responseText)[0];
       flagRenderer(responseObj);
+
+
     }
   }
 

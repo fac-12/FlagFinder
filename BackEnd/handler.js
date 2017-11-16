@@ -35,19 +35,23 @@ function staticFileHandler(request, response, url) {
 
 function autocompleteHandler(request, response){
   var allTheData='';
-  response.writeHead(302,{'Location': '/'});
+
   request.on('data',function(chunkOfData){
     allTheData += chunkOfData;
   });
   request.on('end',function(){
     var convertedData = querystring.parse(allTheData);
-    console.log(convertedData);
-    response.end(filterCountries(convertedData, countriesObject));
+    var filteredArray = filterCountries(allTheData, countriesObject);
+
+    response.writeHead(200,{'Content-Type':'application/json'});
+    response.end(JSON.stringify(filteredArray));
+
   });
 
 }
 
 function filterCountries(searchParameter, dataObject ){
+
   var regex = new RegExp('^' + searchParameter, 'i');
   var newObject = JSON.parse(JSON.stringify(dataObject));
 
