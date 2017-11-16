@@ -1,5 +1,7 @@
 const searchForm = document.getElementById('searchForm');
 const datalist = document.getElementById('countries');
+const errorMessage = document.getElementById('error-message');
+const image = document.getElementById('flag');
 
 let searchValue;
 
@@ -9,7 +11,7 @@ searchForm.addEventListener('input', function(event) {
   var xhr = new XMLHttpRequest();
   var obj;
 
-  console.log('input changed');
+
 
   if(searchValue === '')
     removeOptions();
@@ -18,7 +20,7 @@ searchForm.addEventListener('input', function(event) {
 
   xhr.onreadystatechange = function(){
     if(xhr.readyState == 4){
-      console.log('client side', xhr.responseText);
+
       obj = JSON.parse(xhr.responseText);
 
       autocomplete(obj);
@@ -54,16 +56,19 @@ searchForm.addEventListener('submit', function(event) {
   var xhr = new XMLHttpRequest();
   var url = 'https://restcountries.eu/rest/v2/name/' + searchValue + '?fullText=true';
 
-
   var responseObj;
 
   xhr.onreadystatechange = function() {
     if(xhr.readyState == 4) {
-      responseObj = JSON.parse(xhr.responseText)[0];
-      flagRenderer(responseObj);
-
-
+      if(xhr.status == 200) {
+        responseObj = JSON.parse(xhr.responseText)[0];
+        flagRenderer(responseObj);
+      }
+      else if(xhr.status == 404) {
+        errorHandler();
+      }
     }
+
   }
 
   xhr.open("GET", url, true);
@@ -73,7 +78,7 @@ searchForm.addEventListener('submit', function(event) {
 });
 
 function flagRenderer(countryObj) {
-  var image = document.getElementById('flag');
+  errorMessage.innerText = '';
   image.src = countryObj.flag;
 }
 
@@ -84,13 +89,16 @@ function removeOptions() {
 }
 
 function createOptions() {
-  console.log(datalist.hasChildNodes());
   if(!datalist.hasChildNodes()) {
-    console.log('createOption');
     for (var i = 0; i < 5; i++) {
       var option = document.createElement('option');
       option.id = i;
       datalist.appendChild(option);
     }
   }
+}
+
+function errorHandler() {
+  errorMessage.innerText = 'This is not a country!';
+  image.src = '';
 }
