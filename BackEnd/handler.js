@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var querystring = require('querystring');
-var countriesObject = require("./countries");
+var countriesObject = require("./countries.json");
 
 function homeHandler(request, response) {
   var filePath = path.join(__dirname, '..', 'FrontEnd', 'index.html');
