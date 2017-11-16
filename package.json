@@ -4,8 +4,8 @@
   "description": "Find flags around the world, by inputting the country name",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./BackEnd/test.js",
-    "start": "node ./BackEnd/server.js"
+    "test": "tape ./backend/test.js",
+    "start": "node ./backend/server.js"
   },
   "repository": {
     "type": "git",
