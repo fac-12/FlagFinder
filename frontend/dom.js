@@ -5,7 +5,7 @@ let searchValue;
 
 searchForm.addEventListener('input', function(event) {
   searchValue = event.target.value;
-  let url = 'http://localhost:8000/autocomplete';
+  let url = '/autocomplete';
   var xhr = new XMLHttpRequest();
   var obj;
 
@@ -28,8 +28,6 @@ searchForm.addEventListener('input', function(event) {
 
   xhr.open("POST", url, true);
   xhr.send(searchValue);
-
-
 
 })
 

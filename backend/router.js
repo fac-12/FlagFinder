@@ -1,10 +1,9 @@
 var { homeHandler, staticFileHandler, autocompleteHandler} = require('./handler');
 
-
 function router(request, response){
   var url = request.url;
 
-  if(url.indexOf('FrontEnd') !== -1) {
+  if(url.indexOf('frontend') !== -1) {
     staticFileHandler(request, response, url)
     return;
   }
