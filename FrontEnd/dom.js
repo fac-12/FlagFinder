@@ -1,4 +1,5 @@
 const searchForm = document.getElementById('searchForm');
+const datalist = document.getElementById('countries');
 
 let searchValue;
 
@@ -8,13 +9,12 @@ searchForm.addEventListener('input', function(event) {
   var xhr = new XMLHttpRequest();
   var obj;
 
-  // autocomplete([
-  //   "england",
-  //   "estonia",
-  //   "ecuador",
-  //   "egypt",
-  //   "emmental"
-  // ]);
+  console.log('input changed');
+
+  if(searchValue === '')
+    removeOptions();
+  else
+    createOptions();
 
   xhr.onreadystatechange = function(){
     if(xhr.readyState == 4){
@@ -25,16 +25,25 @@ searchForm.addEventListener('input', function(event) {
     }
   };
 
+
   xhr.open("POST", url, true);
   xhr.send(searchValue);
 
+
+
 })
 
-function autocomplete(array){
-  array.forEach(function(country, index){
-    let option = document.getElementById(index.toString());
-    option.setAttribute("value", country);
-  })
+function autocomplete(countryArray){
+
+  var optionsArray = Array.from(document.getElementsByTagName('option'));
+
+  optionsArray.forEach(function(option, index) {
+
+    if(countryArray[index] !== undefined)
+      option.setAttribute("value", countryArray[index]);
+    else
+      option.setAttribute("value", '');
+  });
 }
 
 
@@ -66,4 +75,22 @@ searchForm.addEventListener('submit', function(event) {
 function flagRenderer(countryObj) {
   var image = document.getElementById('flag');
   image.src = countryObj.flag;
+}
+
+function removeOptions() {
+  while (datalist.hasChildNodes()) {
+    datalist.removeChild(datalist.firstChild);
+  }
+}
+
+function createOptions() {
+  console.log(datalist.hasChildNodes());
+  if(!datalist.hasChildNodes()) {
+    console.log('createOption');
+    for (var i = 0; i < 5; i++) {
+      var option = document.createElement('option');
+      option.id = i;
+      datalist.appendChild(option);
+    }
+  }
 }
