@@ -42,22 +42,27 @@ function autocompleteHandler(request, response){
   request.on('end',function(){
     var convertedData = querystring.parse(allTheData);
     console.log(convertedData);
-    response.end();
+    response.end(filterCountries(convertedData, countriesObject));
   });
 
 }
 
 function filterCountries(searchParameter, dataObject ){
-  var regex = new Regex('/^' + searchParameter + '/i');
+  var regex = new RegExp('^' + searchParameter, 'i');
+  var newObject = JSON.parse(JSON.stringify(dataObject));
 
-  return Object.values(dataObject).filter(function(value){
-    return value.matches(regex);
+  newObject.countries = newObject.countries.filter(function(country){
+    return regex.test(country);
   });
-
-}
+  if(newObject.countries.length < 5)
+    return newObject.countries;
+  else
+    return newObject.countries = newObject.countries.slice(0,5);
+  }
 
 module.exports = {
   homeHandler,
   staticFileHandler,
-  autocompleteHandler
+  autocompleteHandler,
+  filterCountries
 }
