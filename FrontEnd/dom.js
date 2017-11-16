@@ -29,8 +29,6 @@ searchForm.addEventListener('input', function(event) {
   xhr.open("POST", url, true);
   xhr.send(searchValue);
 
-
-
 })
 
 function autocomplete(countryArray){

@@ -1,6 +1,5 @@
 var { homeHandler, staticFileHandler, autocompleteHandler} = require('./handler');
 
-
 function router(request, response){
   var url = request.url;
 
