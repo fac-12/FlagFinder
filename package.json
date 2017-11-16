@@ -4,8 +4,8 @@
   "description": "Find flags around the world, by inputting the country name",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./BackEnd/test.js",
-    "start": "node ./BackEnd/server.js"
+    "test": "tape ./backend/test.js",
+    "start": "node ./backend/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/fac-12/FlagFinder#readme",
   "devDependencies": {
-    "nodemon": "^1.12.1",
     "tape": "^4.8.0"
   },
   "engines": {
