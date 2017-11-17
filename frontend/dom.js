@@ -20,6 +20,7 @@ searchForm.addEventListener('input', function(event) {
   xhr.onreadystatechange = function(){
     if(xhr.readyState == 4){
 
+
       obj = JSON.parse(xhr.responseText);
 
       autocomplete(obj);
@@ -35,7 +36,7 @@ searchForm.addEventListener('input', function(event) {
 function autocomplete(countryArray){
 
   var optionsArray = Array.from(document.getElementsByTagName('option'));
-
+  console.log(countryArray);
   optionsArray.forEach(function(option, index) {
 
     if(countryArray[index] !== undefined)
