@@ -1,22 +1,22 @@
-const searchForm = document.getElementById('searchForm');
-const datalist = document.getElementById('countries');
-const errorMessage = document.getElementById('error-message');
-const image = document.getElementById('flag');
-const body = document.getElementsByTagName('body')[0];
+var searchForm = document.getElementById('searchForm');
+var datalist = document.getElementById('countries');
+var errorMessage = document.getElementById('error-message');
+var image = document.getElementById('flag');
+var body = document.getElementsByTagName('body')[0];
 
-let searchValue;
+var searchValue;
 
 searchForm.addEventListener('input', function(event) {
   searchValue = event.target.value;
-  let url = '/autocomplete';
+  var url = '/autocomplete';
   var xhr = new XMLHttpRequest();
   var obj;
 
-  if(searchValue === '')
+  if(searchValue === ''){
     removeOptions();
-  else
+  } else {
     createOptions();
-
+}
   xhr.onreadystatechange = function(){
     if(xhr.readyState == 4){
 
