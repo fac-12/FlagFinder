@@ -17,7 +17,7 @@ function staticFileHandler(request, response, url) {
     html : 'text/html',
     css : 'text/css',
     js : 'application/javascript',
-    // ico : 'image/x-icon',
+    ico : 'image/x-icon',
     jpg : 'image/jpeg'
   }
 
