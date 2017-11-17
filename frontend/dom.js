@@ -89,7 +89,7 @@ function removeOptions() {
 
 function createOptions() {
   if(!datalist.hasChildNodes()) {
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 10; i++) {
       var option = document.createElement('option');
       option.id = i;
       datalist.appendChild(option);
