@@ -40,16 +40,10 @@ function autocompleteHandler(request, response){
   });
   request.on('end',function(){
 
-    if(allTheData === '') {
-      response.writeHead(200,{'Content-Type':'application/json'});
-      response.end(JSON.stringify([]));
-    }
-    else {
-      var filteredArray = filterCountries(allTheData, countriesObject);
+    var filteredArray = filterCountries(allTheData, countriesObject);
 
-      response.writeHead(200,{'Content-Type':'application/json'});
-      response.end(JSON.stringify(filteredArray));
-    }
+    response.writeHead(200,{'Content-Type':'application/json'});
+    response.end(JSON.stringify(filteredArray));
 
   });
 
@@ -63,6 +57,7 @@ function filterCountries(searchParameter, dataObject ){
   newObject.countries = newObject.countries.filter(function(country){
     return regex.test(country);
   });
+  
   if(newObject.countries.length < 5)
     return newObject.countries;
   else
