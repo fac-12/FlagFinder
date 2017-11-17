@@ -99,4 +99,5 @@ function createOptions() {
 function errorHandler() {
   errorMessage.innerText = 'This is not a country!';
   image.src = '';
+  body.style.backgroundImage = "url('')";
 }
