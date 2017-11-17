@@ -3,12 +3,23 @@ body {
   flex-direction: column;
   align-items: center;
   background-repeat: repeat;
-  background-size: 22%;
+  background-size: 100px;
 }
 
 .heading {
-  background: white;
+  background: black;
+  color: white;
   margin-bottom: 50px;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 1.5rem;
+  border: 5px solid brown;
+  border-radius: 5%;
+}
+
+.title {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
 }
 
 .flag-image {
@@ -16,9 +27,29 @@ body {
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
 
 }
+
+.submit-input {
+  height: 50px;
+  font-size: 1.5rem;
+  border: solid 1px black;
+}
+
+.submit {
+  margin-left: 20px;
+  background-image: url('http://images.clipartpanda.com/happy-earth-cartoon-cartoon_earth.gif');
+  background-size: 110%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100%;
+  border: solid 1px black;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
 @keyframes spin{
     0% { transform: rotateY(0deg); }
     100% { transform: rotateY(360deg); }
@@ -26,4 +57,16 @@ body {
 
 .searchForm {
   margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 430px) {
+    .heading {
+      font-size: 1.25rem;
+    }
+
+    .flag-image {
+      width: 200px;
+    }
 }
