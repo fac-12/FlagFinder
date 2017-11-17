@@ -15,15 +15,17 @@
   <header class="heading">
     <h1>Where in the world?</h1>
   </header>
-  <form class="" id="searchForm">
+
+  <form class="searchForm" id="searchForm">
     <input list="countries" type="text" name="search" placeholder="Search for your flag" required>
     <datalist id="countries"></datalist>
     <input class="submit" type="submit" value="Submit">
 
   </form>
-  <section id="" class="results">
-    <img id="flag" src="" alt="">
 
+  <section id="" class="results">
+    <p id="error-message"></p>
+    <img id="flag" class="flag-image" src="" alt="">
   </section>
 
 </body>
