@@ -60,13 +60,9 @@ function filterCountries(searchParameter, dataObject ){
   var regex = new RegExp('^' + searchParameter, 'i');
   var newObject = JSON.parse(JSON.stringify(dataObject));
 
-  newObject.countries = newObject.countries.filter(function(country){
+  return newObject.countries.filter(function(country){
     return regex.test(country);
-  });
-  if(newObject.countries.length < 5)
-    return newObject.countries;
-  else
-    return newObject.countries = newObject.countries.slice(0,5);
+  }).slice(0,10);
 }
 
 module.exports = {
